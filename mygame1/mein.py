@@ -18,7 +18,7 @@ BLUE = (0, 0, 255)
 
 class Player(pygame.sprite.Sprite):
 
-    speed = 5
+    speed = 7
     right_move = 0
     left_move = 0
 
@@ -38,12 +38,21 @@ class Player(pygame.sprite.Sprite):
     def update_left_move(self):
         self.left_move += 1
 
+    def zero_left_move(self):
+        self.left_move = 0
+
+    def zero_right_move(self):
+        self.right_move = 0
+
     def update(self):
         self.rect.x += self.speed * self.right_move - self.speed * self.left_move
-        self.right_move = 0
-        self.left_move = 0
+        # self.right_move = 0
+        # self.left_move = 0
         # if self.rect.left > WIDTH:
         #     self.rect.right = 0
+
+
+
 
 
 # создаем игру и окно
@@ -74,6 +83,11 @@ while running:
                 player.update_left_move()
             if event.key == pygame.K_RIGHT:
                 player.update_right_move()
+        if event.type == pygame.KEYUP:
+            if event.key == pygame.K_LEFT:
+                player.zero_left_move()
+            if event.key == pygame.K_RIGHT:
+                player.zero_right_move()
     # Обновление
     all_sprites.update()
 
