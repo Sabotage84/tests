@@ -29,6 +29,10 @@ class Player(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.midbottom = ((WIDTH / 2) - 25, HEIGHT-10)
 
+    def get_mid_point(self):
+        return self.rect.midtop
+
+
     def update_speed(self):
         self.speed = 0
 
@@ -52,7 +56,22 @@ class Player(pygame.sprite.Sprite):
         #     self.rect.right = 0
 
 
+class Bullet(pygame.sprite.Sprite):
+    speed = 5
 
+    def __init__(self, x, y):
+        pygame.sprite.Sprite.__init__(self)
+        self.image = pygame.Surface((5, 15))
+        self.image.fill(BLUE)
+        self.rect = self.image.get_rect()
+        self.rect.midbottom = (x, HEIGHT-60)
+
+    def update(self):
+        self.rect.y -= self.speed
+        # self.right_move = 0
+        # self.left_move = 0
+        # if self.rect.left > WIDTH:
+        #     self.rect.right = 0
 
 
 # создаем игру и окно
@@ -63,7 +82,9 @@ pygame.display.set_caption("My Game 1")
 clock = pygame.time.Clock()
 all_sprites = pygame.sprite.Group()
 player = Player()
+
 all_sprites.add(player)
+
 
 # Цикл игры
 running = True
@@ -83,6 +104,10 @@ while running:
                 player.update_left_move()
             if event.key == pygame.K_RIGHT:
                 player.update_right_move()
+            if event.key == pygame.K_DOWN or event.key == pygame.K_SPACE:
+                a, s = player.rect.midtop
+                bull = Bullet(a, s)
+                all_sprites.add(bull)
         if event.type == pygame.KEYUP:
             if event.key == pygame.K_LEFT:
                 player.zero_left_move()
