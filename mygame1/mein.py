@@ -74,6 +74,24 @@ class Bullet(pygame.sprite.Sprite):
         #     self.rect.right = 0
 
 
+class Target(pygame.sprite.Sprite):
+    speed = 1
+
+    def __init__(self, x, y):
+        pygame.sprite.Sprite.__init__(self)
+        self.image = pygame.Surface((40, 40))
+        self.image.fill(GREEN)
+        self.rect = self.image.get_rect()
+        self.rect.midbottom = (x, y)
+
+    def update(self):
+        self.rect.y += self.speed
+        # self.right_move = 0
+        # self.left_move = 0
+        # if self.rect.left > WIDTH:
+        #     self.rect.right = 0
+
+
 # создаем игру и окно
 pygame.init()
 pygame.mixer.init()  # для звука
@@ -98,7 +116,9 @@ while running:
             running = False
         if event.type == pygame.MOUSEBUTTONDOWN:
             if event.button == 1:
-                player.update_right_move()
+                for i in range(1, 4):
+                    target = Target(10+50+i*100, 0)
+                    all_sprites.add(target)
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_LEFT:
                 player.update_left_move()
