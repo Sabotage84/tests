@@ -100,7 +100,7 @@ pygame.display.set_caption("My Game 1")
 clock = pygame.time.Clock()
 all_sprites = pygame.sprite.Group()
 player = Player()
-
+pygame.time.set_timer(pygame.USEREVENT, 4000)
 all_sprites.add(player)
 
 
@@ -114,11 +114,13 @@ while running:
         # проверить закрытие окна
         if event.type == pygame.QUIT:
             running = False
+        if event.type == pygame.USEREVENT:
+            for i in range(1, 4):
+                target = Target(10 + 50 + i * 100, 0)
+                all_sprites.add(target)
         if event.type == pygame.MOUSEBUTTONDOWN:
             if event.button == 1:
-                for i in range(1, 4):
-                    target = Target(10+50+i*100, 0)
-                    all_sprites.add(target)
+                pass
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_LEFT:
                 player.update_left_move()
