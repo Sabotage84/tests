@@ -115,6 +115,7 @@ while running:
         if event.type == pygame.QUIT:
             running = False
         if event.type == pygame.USEREVENT:
+            # Сделать несколько функций разных формаций
             for i in range(1, 4):
                 target = Target(10 + 50 + i * 100, 0)
                 all_sprites.add(target)
