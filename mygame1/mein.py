@@ -1,4 +1,5 @@
 import pygame as pygame
+from random import randint
 import random
 import os
 import sys
@@ -104,6 +105,24 @@ pygame.time.set_timer(pygame.USEREVENT, 4000)
 all_sprites.add(player)
 
 
+def target_alfa():
+    for j in range(1, 4):
+        target1 = Target(10 + 50 + j * 100, 0)
+        all_sprites.add(target1)
+
+
+def target_betta():
+    for j in range(1, 5):
+        target1 = Target(10 + 50 + j * 100, 0)
+        all_sprites.add(target1)
+
+
+def target_gamma():
+    for j in range(1, 6):
+        target1 = Target(10 + 50 + j * 100, 0)
+        all_sprites.add(target1)
+
+
 # Цикл игры
 running = True
 while running:
@@ -115,7 +134,16 @@ while running:
         if event.type == pygame.QUIT:
             running = False
         if event.type == pygame.USEREVENT:
-            # Сделать несколько функций разных формаций
+            r = randint(1, 3)
+            if r == 1:
+                target_alfa()
+            if r == 2:
+                target_betta()
+            if r == 3:
+                target_gamma()
+
+
+
             for i in range(1, 4):
                 target = Target(10 + 50 + i * 100, 0)
                 all_sprites.add(target)
