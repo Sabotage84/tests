@@ -105,21 +105,31 @@ pygame.time.set_timer(pygame.USEREVENT, 4000)
 all_sprites.add(player)
 
 
-def target_alfa():
+def target_3():
     for j in range(1, 4):
-        target1 = Target(10 + 50 + j * 100, 0)
+        gap = (WIDTH-3*40)/4
+        target1 = Target(20 + (j - 1) * 40 + j * gap, 0)
         all_sprites.add(target1)
 
 
-def target_betta():
+def target_4():
     for j in range(1, 5):
-        target1 = Target(10 + 50 + j * 100, 0)
+        gap = (WIDTH - 4 * 40) / 5
+        target1 = Target(20 + (j - 1) * 40 + j * gap, 0)
         all_sprites.add(target1)
 
 
-def target_gamma():
+def target_5():
     for j in range(1, 6):
-        target1 = Target(10 + 50 + j * 100, 0)
+        gap = (WIDTH - 5 * 40) / 6
+        target1 = Target(20 + (j - 1) * 40 + j * gap, 0)
+        all_sprites.add(target1)
+
+
+def target_6():
+    for j in range(1, 7):
+        gap = (WIDTH - 6 * 40) / 7
+        target1 = Target(20 + (j - 1) * 40 + j * gap, 0)
         all_sprites.add(target1)
 
 
@@ -134,19 +144,16 @@ while running:
         if event.type == pygame.QUIT:
             running = False
         if event.type == pygame.USEREVENT:
-            r = randint(1, 3)
+            r = randint(1, 4)
             if r == 1:
-                target_alfa()
+                target_3()
             if r == 2:
-                target_betta()
+                target_4()
             if r == 3:
-                target_gamma()
+                target_5()
+            if r == 4:
+                target_6()
 
-
-
-            for i in range(1, 4):
-                target = Target(10 + 50 + i * 100, 0)
-                all_sprites.add(target)
         if event.type == pygame.MOUSEBUTTONDOWN:
             if event.button == 1:
                 pass
