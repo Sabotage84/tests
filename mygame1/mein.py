@@ -33,12 +33,11 @@ class Player(pygame.sprite.Sprite):
     def get_mid_point(self):
         return self.rect.midtop
 
-
     def update_speed(self):
         self.speed = 0
 
     def update_right_move(self):
-        self.right_move += 1
+            self.right_move += 1
 
     def update_left_move(self):
         self.left_move += 1
@@ -50,6 +49,10 @@ class Player(pygame.sprite.Sprite):
         self.right_move = 0
 
     def update(self):
+        if self.rect.right > WIDTH + 20:
+            self.right_move = 0
+        if self.rect.left < -20:
+            self.left_move = 0
         self.rect.x += self.speed * self.right_move - self.speed * self.left_move
         # self.right_move = 0
         # self.left_move = 0
