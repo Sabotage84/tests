@@ -88,6 +88,9 @@ class Target(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.midbottom = (x, y)
 
+    def destroy(self):  # TODO: destroy all targets
+        pass
+
     def update(self):
         self.rect.y += self.speed
         # self.right_move = 0
